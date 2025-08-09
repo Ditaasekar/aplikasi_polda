@@ -11,6 +11,12 @@ app.get('/', (req, res) => {
   res.send('Backend API is running!');
 });
 
-
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running on port ${PORT}`);
+  });
+}
+// Export untuk Vercel
+module.exports = app;
